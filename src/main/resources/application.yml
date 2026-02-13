@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: spring-boot-test
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+    org.springdoc: INFO
+    com.gft.test.app: DEBUG
+    org.springframework.web.client.RestTemplate: DEBUG
+    # Network logs - Classic Spring
+    org.apache.hc.client5.http: DEBUG
+    org.apache.hc.client5.http.wire: DEBUG
+    # Network logs - Reactive Spring
+    reactor.netty.http.client: DEBUG
+    org.springframework.web.reactive.function.client: DEBUG
+    org:
+      springframework:
+        http:
+          client: DEBUG
+      web:
+        reactive:
+          function:
+            client:
+              WebClient: DEBUG
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+    tagsSorter: alpha
+    display-request-duration: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+open-data-aragon:
+  path: https://opendata.aragon.es/GA_OD_Core/views?format=
+  format: json
