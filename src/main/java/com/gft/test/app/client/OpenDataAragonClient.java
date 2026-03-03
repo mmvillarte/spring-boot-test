@@ -1,18 +1,17 @@
 package com.gft.test.app.client;
 
 import com.gft.test.app.model.OpenDataAragonModel;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class OpenDataAragonClient {
     private final RestTemplate restTemplate;
+    private final WebClient webClient;
 
     public OpenDataAragonClient(RestTemplate restTemplate, WebClient webClient) {
         this.restTemplate = restTemplate;
@@ -20,13 +19,10 @@ public class OpenDataAragonClient {
     }
 
     public List<OpenDataAragonModel> getAvailableServices(String path) {
-        ResponseEntity<OpenDataAragonModel[]> response =
-                restTemplate.getForEntity(path, OpenDataAragonModel[].class);
-
-        return (response.getBody() != null) ? Arrays.asList(response.getBody()): new ArrayList<>();
+        return Optional.ofNullable(
+                restTemplate.getForEntity(path, OpenDataAragonModel[].class).getBody()
+        ).map(List::of).orElseGet(List::of);
     }
-
-    private final WebClient webClient;
 
     public List<OpenDataAragonModel> getAvailableServicesWebFlux(String path) {
         return webClient.get()
