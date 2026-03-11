@@ -1,6 +1,6 @@
 spring:
   application:
-    name: spring-boot-test
+    name: spring-boot-aragon-data-api
 
   datasource:
     url: jdbc:h2:mem:testdb
