@@ -29,8 +29,8 @@ class OpenDataAragonServiceTest {
     @InjectMocks
     OpenDataAragonService openDataAragonService;
 
-    public final static String BASE_PATH_TEST = "http://test/path?form=";
-    public final static String FORMAT_TEST = "json";
+    public static final String BASE_PATH_TEST = "http://test/path?form=";
+    public static final String FORMAT_TEST = "json";
 
     @BeforeEach
     void beforeEach() {

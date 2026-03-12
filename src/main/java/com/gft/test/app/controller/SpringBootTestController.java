@@ -18,7 +18,7 @@ import java.util.List;
 public class SpringBootTestController {
     private final OpenDataAragonService openDataAragonService;
 
-    public final static String HELLO_WORLD = "Hello World!";
+    public static final String HELLO_WORLD = "Hello World!";
 
     public SpringBootTestController(OpenDataAragonService openDataAragonService) {
         this.openDataAragonService = openDataAragonService;
