@@ -32,7 +32,7 @@ logging:
     root: INFO
     org.springframework: INFO
     org.springdoc: INFO
-    com.gft.test.app: DEBUG
+    corg.test.opendataaragon: DEBUG
     org.springframework.web.client.RestTemplate: DEBUG
     # Network logs - Classic Spring
     org.apache.hc.client5.http: DEBUG
