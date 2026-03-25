@@ -1,0 +1,28 @@
+@startuml LoadAllServicesHighLevel
+
+actor User
+participant "User API" as API
+participant "Service Loader" as Loader
+participant "Aragon API" as External
+database DB
+
+User -> API : Load all services request
+API -> Loader : loadAllServices()
+
+Loader -> External : fetch services
+External --> Loader : services list
+
+loop for each service
+    Loader -> DB : check if exists
+
+    alt Service does not exist
+        Loader -> DB : save service
+    else Already exists
+        Loader -> Loader : skip
+    end
+end
+
+Loader --> API : success (services list)
+API --> User : 200 OK
+
+@enduml
