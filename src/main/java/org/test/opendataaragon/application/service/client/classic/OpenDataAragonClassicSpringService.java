@@ -21,7 +21,7 @@ public class OpenDataAragonClassicSpringService implements OpenDataAragonService
     }
 
     @Override
-    public List<OpenDataAragonModel> getAllServices() {
+    public List<OpenDataAragonModel> loadAllServices() {
         return openDataAragonClient.getAvailableServices(openDataAragonConfig.getPath()
                 + openDataAragonConfig.getFormat());
     }

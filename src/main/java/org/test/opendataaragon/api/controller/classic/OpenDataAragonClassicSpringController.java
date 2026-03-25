@@ -1,5 +1,6 @@
 package org.test.opendataaragon.api.controller.classic;
 
+import lombok.extern.slf4j.Slf4j;
 import org.test.opendataaragon.infrastructure.persistence.model.OpenDataAragonModel;
 import org.test.opendataaragon.application.service.client.OpenDataAragonService;
 import org.test.opendataaragon.application.service.query.OpenDataAragonQueryService;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/test/classic")
+@Slf4j
 public class OpenDataAragonClassicSpringController {
     private final OpenDataAragonService openDataAragonService;
     private final OpenDataAragonQueryService openDataAragonQueryService;
@@ -22,11 +24,13 @@ public class OpenDataAragonClassicSpringController {
         this.openDataAragonQueryService = openDataAragonQueryService;
     }
 
-    @GetMapping("/aragon/services/all")
-    public List<OpenDataAragonModel> getAllServices() {
-        List<OpenDataAragonModel> openDataAragonModels = openDataAragonService.getAllServices();
+    @GetMapping("/aragon/services/load/all")
+    public List<OpenDataAragonModel> loadAllServices() {
+        log.info("Loading all services (classic)");
+        List<OpenDataAragonModel> openDataAragonModels = openDataAragonService.loadAllServices();
 
         if(openDataAragonModels != null && !openDataAragonModels.isEmpty()) {
+            log.info("Services retrieved: {}. Upserting to database (classic)", openDataAragonModels.size());
             openDataAragonQueryService.upsertAll(openDataAragonModels);
         }
 

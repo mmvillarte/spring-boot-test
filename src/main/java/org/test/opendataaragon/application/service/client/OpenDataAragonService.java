@@ -5,5 +5,5 @@ import org.test.opendataaragon.infrastructure.persistence.model.OpenDataAragonMo
 import java.util.List;
 
 public interface OpenDataAragonService {
-    List<OpenDataAragonModel> getAllServices();
+    List<OpenDataAragonModel> loadAllServices();
 }
